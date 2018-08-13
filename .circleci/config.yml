@@ -1,4 +1,4 @@
-# CircleCI build for https://circleci.com/gh/monicahq/CentralPerk
+# CircleCI build for https://circleci.com/gh/monicahq/centralperk
 
 version: 2
 jobs:
@@ -11,23 +11,23 @@ jobs:
           name: Build docker image
           command: docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
                                 --build-arg VCS_REF=$CIRCLE_SHA1
-                                -t circleci-docker-central-perk .
+                                -t circleci-docker-centralperk .
 #      - run:
 #          name: Login to docker
 #          command: echo $DOCKER_LOGIN | docker login -u $DOCKER_USER --password-stdin
 #      - run:
 #          name: Publish docker image
 #          command: |
-#            docker tag circleci-docker-central-perk monicahq/circleci-docker-central-perk:$CIRCLE_SHA1
-#            docker push monicahq/circleci-docker-central-perk:$CIRCLE_SHA1
-#            docker tag circleci-docker-central-perk monicahq/circleci-docker-central-perk:$CIRCLE_BRANCH
-#            docker push monicahq/circleci-docker-central-perk:$CIRCLE_BRANCH
+#            docker tag circleci-docker-centralperk monicahq/circleci-docker-centralperk:$CIRCLE_SHA1
+#            docker push monicahq/circleci-docker-centralperk:$CIRCLE_SHA1
+#            docker tag circleci-docker-centralperk monicahq/circleci-docker-centralperk:$CIRCLE_BRANCH
+#            docker push monicahq/circleci-docker-centralperk:$CIRCLE_BRANCH
 #            if [[ $CIRCLE_BRANCH = master ]]; then
 #              # push default tag
-#              docker tag circleci-docker-central-perk monicahq/circleci-docker-central-perk
-#              docker push monicahq/circleci-docker-central-perk
+#              docker tag circleci-docker-centralperk monicahq/circleci-docker-centralperk
+#              docker push monicahq/circleci-docker-centralperk
 #              # notify microbadger to update
-#              # https://microbadger.com/images/monicahq/circleci-docker-central-perk
+#              # https://microbadger.com/images/monicahq/circleci-docker-centralperk
 #              curl -X POST $MICROBADGER_WEBHOOK
 #            fi
 
@@ -35,4 +35,4 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build:
+      - build
