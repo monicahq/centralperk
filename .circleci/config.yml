@@ -28,7 +28,7 @@ jobs:
               docker push monicahq/circleci-docker-centralperk
               # notify microbadger to update
               # https://microbadger.com/images/monicahq/circleci-docker-centralperk
-#              curl -X POST $MICROBADGER_WEBHOOK
+              # curl -X POST $MICROBADGER_WEBHOOK
             fi
 
 workflows:
