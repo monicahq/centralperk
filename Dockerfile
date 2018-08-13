@@ -18,11 +18,13 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN set -ex && cd ~ && \
         sudo apt-get update && \
         sudo apt-get install -y \
-                mysql-client
+                mysql-client && \
+        sudo apt-get clean -y
 
 # Install Chrome
 RUN set -ex && cd ~ && \
         sudo apt-get install lsb-release && \
+        sudo apt-get clean -y && \
         curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
         sudo dpkg -i google-chrome.deb && \
         sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g' /opt/google/chrome/google-chrome && \
@@ -34,6 +36,7 @@ RUN set -ex && cd ~ && \
                 zlib1g-dev \
                 libicu-dev \
                 libpng-dev && \
+        sudo apt-get clean -y && \
         sudo docker-php-ext-install -j$(nproc) \
                 zip \
                 intl \
@@ -45,7 +48,6 @@ RUN set -ex && cd ~ && \
                 mysqli \
                 mbstring && \
         sudo apt-get remove -y \
-                zlib1g-dev \
                 libicu-dev
 
 CMD ["/bin/sh"]
