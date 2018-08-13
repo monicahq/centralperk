@@ -13,6 +13,9 @@ jobs:
                                 --build-arg VCS_REF=$CIRCLE_SHA1
                                 -t circleci-docker-centralperk .
       - run:
+          name: List docker image
+          command: docker images
+      - run:
           name: Login to docker
           command: echo $DOCKER_LOGIN | docker login -u $DOCKER_USER --password-stdin
       - run:

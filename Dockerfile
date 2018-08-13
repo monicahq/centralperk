@@ -46,7 +46,6 @@ RUN set -ex && cd ~ && \
                 mbstring && \
         sudo apt-get remove -y \
                 zlib1g-dev \
-                libicu-dev \
-                libpng-dev
+                libicu-dev
 
 CMD ["/bin/sh"]
