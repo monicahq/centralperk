@@ -18,14 +18,14 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN set -ex && cd ~ && \
         sudo apt-get update && \
         sudo apt-get install -y \
-                zlib1g-dev \
-                libicu-dev \
-                libpng-dev \
-                mysql-client \
-                python-pip
+                mysql-client
 
 # Install php extensions
 RUN set -ex && cd ~ && \
+        sudo apt-get install -y \
+                zlib1g-dev \
+                libicu-dev \
+                libpng-dev && \
         sudo docker-php-ext-install -j$(nproc) \
                 zip \
                 intl \
@@ -35,10 +35,10 @@ RUN set -ex && cd ~ && \
                 gd \
                 pdo_mysql \
                 mysqli \
-                mbstring
-
-# Install docker-squash
-RUN set -ex && cd ~ && \
-        pip install docker-squash "docker < 3"
+                mbstring && \
+        sudo apt-get remove -y \
+                zlib1g-dev \
+                libicu-dev \
+                libpng-dev
 
 CMD ["/bin/sh"]
