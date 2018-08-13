@@ -5,7 +5,7 @@ FROM circleci/php:7.2-node-browsers
 ARG BUILD_DATE
 ARG VCS_REF
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="Monica CircleCI Primary Docker Image" \
+      org.label-schema.name="Monica CircleCI Tests Docker Image" \
       org.label-schema.description="Monica custom-built docker image for CircleCI 2.0 jobs. Includes all tools needed to test monica." \
       org.label-schema.url="https://monicahq.com" \
       org.label-schema.vcs-ref=$VCS_REF \
