@@ -1,5 +1,4 @@
-DOCKER_REPOS := monicahq
-DOCKER_IMAGE := circleci-docker-centralperk
+DOCKER_IMAGE := monicahq/circleci-docker-centralperk
 GIT_COMMIT := $(shell git rev-parse --short HEAD)
 
 docker_build:
@@ -11,14 +10,14 @@ docker_build:
 
 docker_push:
 	# Tag image with commit
-	docker tag $(DOCKER_IMAGE) $(DOCKER_REPOS)/$(DOCKER_IMAGE):$(GIT_COMMIT)
-	docker push $(DOCKER_REPOS)/$(DOCKER_IMAGE):$(GIT_COMMIT)
+	docker tag $(DOCKER_IMAGE) $(DOCKER_IMAGE):$(GIT_COMMIT)
+	docker push $(DOCKER_IMAGE):$(GIT_COMMIT)
 
 	# Tag image with branch
-	docker tag $(DOCKER_IMAGE) $(DOCKER_REPOS)/$(DOCKER_IMAGE):$(CIRCLE_BRANCH)
-	docker push $(DOCKER_REPOS)/$(DOCKER_IMAGE):$(CIRCLE_BRANCH)
+	docker tag $(DOCKER_IMAGE) $(DOCKER_IMAGE):$(CIRCLE_BRANCH)
+	docker push $(DOCKER_IMAGE):$(CIRCLE_BRANCH)
 
 docker_push_master: docker_push
     # push default tag
-	docker tag $(DOCKER_IMAGE) $(DOCKER_REPOS)/$(DOCKER_IMAGE)
-	docker push $(DOCKER_REPOS)/$(DOCKER_IMAGE)
+	docker tag $(DOCKER_IMAGE) $(DOCKER_IMAGE):latest
+	docker push $(DOCKER_IMAGE)

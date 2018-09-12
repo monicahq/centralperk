@@ -1,5 +1,5 @@
 # CircleCI primary docker image to run within
-FROM circleci/php:7.2-node-browsers
+FROM circleci/php:7.2-apache-node-browsers
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -22,24 +22,19 @@ RUN set -ex && cd ~ && \
         sudo apt-get clean -y
 
 # Install Chrome
-RUN set -ex && cd ~ && \
-        sudo apt-get install lsb-release && \
-        sudo apt-get clean -y && \
-        curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-        sudo dpkg -i google-chrome.deb && \
-        sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g' /opt/google/chrome/google-chrome && \
-        rm -f google-chrome.deb
+#RUN set -ex && cd ~ && \
+#        sudo apt-get install lsb-release && \
+#        sudo apt-get clean -y && \
+#        curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+#        sudo dpkg -i google-chrome.deb && \
+#        sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g' /opt/google/chrome/google-chrome && \
+#        rm -f google-chrome.deb
 
 # Install php extensions
 RUN set -ex && cd ~ && \
-        sudo apt-get install -y \
-                zlib1g-dev \
-                libicu-dev \
-                libpng-dev && \
+        sudo apt-get install -y libpng-dev && \
         sudo apt-get clean -y && \
         sudo docker-php-ext-install -j$(nproc) \
-                zip \
-                intl \
                 json \
                 iconv \
                 bcmath \
