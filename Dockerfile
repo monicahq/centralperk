@@ -41,6 +41,7 @@ RUN set -ex && cd ~ && \
                 gd \
                 pdo_mysql \
                 mysqli \
+                soap \
                 mbstring && \
         sudo apt-get remove -y \
                 libicu-dev
