@@ -32,7 +32,7 @@ RUN set -ex && cd ~ && \
 
 # Install php extensions
 RUN set -ex && cd ~ && \
-        sudo apt-get install -y libpng-dev && \
+        sudo apt-get install -y libpng-dev libxml2-dev && \
         sudo apt-get clean -y && \
         sudo docker-php-ext-install -j$(nproc) \
                 json \
@@ -41,6 +41,7 @@ RUN set -ex && cd ~ && \
                 gd \
                 pdo_mysql \
                 mysqli \
+                soap \
                 mbstring && \
         sudo apt-get remove -y \
                 libicu-dev
