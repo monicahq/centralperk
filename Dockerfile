@@ -32,8 +32,9 @@ RUN set -ex && cd ~ && \
 
 # Install php extensions
 RUN set -ex && cd ~ && \
-        sudo apt-get install -y libpng-dev libxml2-dev && \
+        sudo apt-get install -y libpng-dev libxml2-dev libfreetype6-dev libjpeg62-turbo-dev && \
         sudo apt-get clean -y && \
+        sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
         sudo docker-php-ext-install -j$(nproc) \
                 json \
                 iconv \
